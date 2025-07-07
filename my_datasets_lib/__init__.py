@@ -23,7 +23,7 @@ def list_datasets():
 def View(name):
     """View a dataset by name."""
     if hasattr(datasets, name):
-        df = getattr(datasets, name)
+        df = getattr(datasets, name).load()
         if isinstance(df, pd.DataFrame):
             return df
         else:
