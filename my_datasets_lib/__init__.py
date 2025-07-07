@@ -23,10 +23,9 @@ def list_datasets():
 def View(name):
     """View a dataset by name."""
     if hasattr(datasets, name):
-        df = getattr(datasets, name).load()
+        df = getattr(datasets, name)
         if isinstance(df, pd.DataFrame):
-            with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-                print(df)
+            return df
         else:
             raise TypeError(f"Dataset '{name}' is not a pandas DataFrame.")
     else:
