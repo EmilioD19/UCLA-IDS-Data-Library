@@ -2,4 +2,4 @@
 
 from . import cdc
 
-__all__ = ["cdc"]
+__all__ = ["cdc", "food_ids"]
