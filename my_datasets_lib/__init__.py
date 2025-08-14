@@ -31,5 +31,15 @@ def View(name):
     else:
         raise ValueError(f"Dataset '{name}' not found in my_datasets_lib.datasets")
     
+def timeuse_format(df):
+    df = df.replace("NOT_DISPLAYED", 0)
+    df[df.columns.difference(['user.id', 'timestamp', 'activities'])] = \
+        df[df.columns.difference(['user.id', 'timestamp', 'activities'])].apply(pd.to_numeric)
+
+    submissions = df.groupby('user.id').size().rename("submissions")
+    
+    averages = df.groupby('user.id').mean(numeric_only = True)
+    
+    return averages.merge(submissions, on = "user.id")
 
 
